@@ -12,8 +12,11 @@ final class BrokenAsyncTests: XCTestCase {
         Task
         {
             task1Entered.fulfill()
-
             lock.signal()
+
+            while(true)
+            {
+            }
         }
 
         lock.wait()
