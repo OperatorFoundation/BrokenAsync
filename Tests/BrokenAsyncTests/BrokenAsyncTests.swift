@@ -3,9 +3,27 @@ import XCTest
 
 final class BrokenAsyncTests: XCTestCase {
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(BrokenAsync().text, "Hello, World!")
+        let task1Entered = XCTestExpectation(description: "first task has started")
+        let task2Finished = XCTestExpectation(description: "second task has finished")
+
+        let lock = DispatchSemaphore(value: 0)
+
+        // Task 1
+        Task
+        {
+            task1Entered.fulfill()
+
+            lock.signal()
+        }
+
+        lock.wait()
+
+        // Task 2
+        Task
+        {
+            task2Finished.fulfill()
+        }
+
+        wait(for: [task1Entered, task2Finished])
     }
 }
