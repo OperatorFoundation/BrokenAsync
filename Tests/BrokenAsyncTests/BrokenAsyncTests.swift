@@ -14,9 +14,7 @@ final class BrokenAsyncTests: XCTestCase {
             task1Entered.fulfill()
             lock.signal()
 
-            while(true)
-            {
-            }
+            try await Task.sleep(for: Duration.seconds(60))
         }
 
         lock.wait()
