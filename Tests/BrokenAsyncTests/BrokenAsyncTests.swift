@@ -27,6 +27,6 @@ final class BrokenAsyncTests: XCTestCase {
             task2Finished.fulfill()
         }
 
-        wait(for: [task1Entered, task2Finished], timeout: 60)
+        wait(for: [task1Entered, task2Finished], timeout: 5)
     }
 }
